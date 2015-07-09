@@ -93,6 +93,23 @@ With the acute select directive you can avoid this problem altogether by simply 
 
 	<ac-select ac-model="currentState" ac-options="state.name for state in states" ac-key="id"></select>
 
+### ac-search-text attribute ###
+
+If you need to get the value inside the "search box", you can use this attribute. For example
+
+	<ac-select ac-model="currentState" ac-search-text="searchText" ac-options="state.name for state in states"
+	 ng-keyup="search"></select>
+
+Then in your controller:-
+
+		$scope.search = function(){
+			console.log($scope.searchText);
+			// $http get example
+			$http.get('/api/search/' + $scope.searchText).success(function(data){
+				console.log(data);
+			}
+		};
+
 ### Global settings ###
 
 If required, settings can be updated for all instances on a page, by using the acuteSelectService in the application "run" function, as in this example:-
